@@ -1,9 +1,15 @@
 How does your data structure allow developers to access and manipulate the data?
 
-
+This data structure allows developers to create pixels of specific colors,
+forces them to be within acceptable values, and using the separate Screen class developers
+can place said pixels anywhere in a matrix and alter the pixels x & y properties.
 
 If a developer wanted to find a specific element in your data structure, how would you search for it?
 
-
+If a developer wanted to find a pixel they would search using the x & y values by calling
+screen.at(x, y)
 
 What other real-world data can each structure represent?
+
+On a larger scale, and more methods this could be the foundation for how
+any digital display alters the colors of pixels on a screen to display an image.

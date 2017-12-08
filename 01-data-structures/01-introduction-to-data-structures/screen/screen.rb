@@ -1,6 +1,6 @@
 require_relative 'pixel'
 
-class Screen
+class Screen < Pixel
   attr_accessor :width
   attr_accessor :height
   attr_accessor :matrix
@@ -8,16 +8,19 @@ class Screen
   def initialize(width, height)
     @width = width
     @height = height
+    @matrix = []
   end
 
   # Insert a Pixel at x, y
   def insert(pixel, x, y)
-    pixel['x'] = x
-    pixel['y'] = y
+    pixel.x = x
+    pixel.y = y
+    @matrix << pixel
   end
 
+
   def at(x, y)
-    #Pixel.select{|key, hash| hash["x"] == x && hash["y"] == y }
+    (@matrix.select { |pixel| pixel.x == x && pixel.y == y })[0]
   end
 
   private

@@ -8,8 +8,11 @@ is in line.
 
 If a developer wanted to find a specific element in your data structure, how would you search for it?
 
-A developer can search by name to find index,
-or index to retrieve a name.
+A developer can search by:
+Line.members.front #=> returns person at front of the line
+Line.members.middle #=> returns person at the middle of the line.
+Line.members.back #=> returns person at the back of the line.
+Line.members.search(name) #=> returns true if variable "name" is in the line.
 
 
 What other real-world data could this structure represent?
