@@ -6,13 +6,18 @@ class Screen
   attr_accessor :matrix
 
   def initialize(width, height)
+    @width = width
+    @height = height
   end
 
   # Insert a Pixel at x, y
   def insert(pixel, x, y)
+    pixel['x'] = x
+    pixel['y'] = y
   end
 
   def at(x, y)
+    #Pixel.select{|key, hash| hash["x"] == x && hash["y"] == y }
   end
 
   private

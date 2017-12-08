@@ -12,11 +12,32 @@ class Pixel
 
 
   def initialize(red, green, blue, x, y)
+    @red = bound_color(red) || red
+    @green = bound_color(green) || green
+    @blue = bound_color(blue) || blue
+    @x = Integer(x)
+    @y = Integer(y)
+  end
+
+  def select
+    @pixel
   end
 
   private
 
   def validate_color(color)
+  end
+
+  def bound_color(primary_color)
+    if !primary_color.is_a? Integer
+      return "Quit playing games with my heart. Only numbers 0-255."
+    else
+      if primary_color <= 0
+        primary_color = 0
+      elsif primary_color >= 255
+        primary_color = 255
+      end
+    end
   end
 
 end

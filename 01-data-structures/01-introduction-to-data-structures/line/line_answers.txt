@@ -1,0 +1,19 @@
+How does your data structure allow developers to access and manipulate the data?
+
+The Line class allows developers to add persons to the end of the line (by name),
+remove anyone from the line (by name),
+retrieve the name of the person from the front, back and/or middle,
+or simply search by name to see if a person
+is in line.
+
+If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+A developer can search by name to find index,
+or index to retrieve a name.
+
+
+What other real-world data could this structure represent?
+
+This data structure could represent
+any queue related activity; persons, dogs, cattle, inventory...
+the possibilities are endless!

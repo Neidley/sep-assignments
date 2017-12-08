@@ -1,0 +1,9 @@
+How does your data structure allow developers to access and manipulate the data?
+
+
+
+If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+
+
+What other real-world data can each structure represent?

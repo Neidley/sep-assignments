@@ -9,26 +9,33 @@ class Line
   end
 
   def join(person)
+    self.members.push(person)
   end
 
   def leave(person)
+    self.members.delete(person)
   end
 
   def front
+    self.members.first
   end
 
   def middle
+    self.members.at((self.members.length/2).floor)
   end
 
   def back
+    self.members.last
   end
 
   def search(person)
+    self.members.bsearch {|name| name ==  person }
   end
 
   private
 
   def index(person)
+    self.members.index(person)
   end
 
 end
