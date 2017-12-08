@@ -1,0 +1,42 @@
+LINE ANSWERS
+
+  How does your data structure allow developers to access and manipulate the data?
+
+  The Line class allows developers to add persons to the end of the line (by name),
+  remove anyone from the line (by name),
+  retrieve the name of the person from the front, back and/or middle,
+  or simply search by name to see if a person
+  is in line.
+
+  If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+  A developer can search by:
+  Line.members.front #=> returns person at front of the line
+  Line.members.middle #=> returns person at the middle of the line.
+  Line.members.back #=> returns person at the back of the line.
+  Line.members.search(name) #=> returns true if variable "name" is in the line.
+
+
+What other real-world data could this structure represent?
+
+This data structure could represent
+any queue related activity; persons, dogs, cattle, inventory...
+the possibilities are endless!
+
+SCREEN ANSWERS
+
+  How does your data structure allow developers to access and manipulate the data?
+
+  This data structure allows developers to create pixels of specific colors,
+  forces them to be within acceptable values, and using the separate Screen class developers
+  can place said pixels anywhere in a matrix and alter the pixels x & y properties.
+
+  If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+  If a developer wanted to find a pixel they would search using the x & y values by calling
+  screen.at(x, y)
+
+  What other real-world data can each structure represent?
+
+  On a larger scale, and more methods this could be the foundation for how
+  any digital display alters the colors of pixels on a screen to display an image.
