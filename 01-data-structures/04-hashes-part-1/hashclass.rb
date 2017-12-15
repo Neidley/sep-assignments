@@ -6,14 +6,12 @@ class HashClass
 
   def []=(key, value)
     @hash = HashItem.new(key,value)
-    @items.each do |item|
-      if item == @hash
-        return item
-      elsif item == nil
-        @items[index(key,size)] = @hash
-      else
-        resize
-      end
+    if @items[index(key,size)] == @hash.value
+      return
+    elsif @items[index(key,size)] && @items[index(key,size)].value != @hash.value
+      resize
+    else
+      @items[index(key,size)] = @hash
     end
     p @items
     p @items[index(key,size)].value
