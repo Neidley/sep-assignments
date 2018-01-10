@@ -6,16 +6,20 @@ class HashClass
 
   def []=(key, value)
     @hash = HashItem.new(key,value)
-    if @items[index(key,size)] == @hash.value
+    original_index = index(key,size)
+    hash_item = @items[original_index]
+    if hash_item == @hash
       return
-    elsif @items[index(key,size)] && @items[index(key,size)].value != @hash.value
+    elsif hash_item && hash_item.key != @hash.key
       resize
+      #recursive call here
+      self[key] = value
     else
-      @items[index(key,size)] = @hash
+      if hash_item && hash_item.value != @hash.value
+        resize
+      end
+      @items[original_index] = @hash
     end
-    p @items
-    p @items[index(key,size)].value
-    p @items.size
   end
 
   def [](key)

@@ -1,6 +1,7 @@
 Explain why doubling the size of the underlying array of your HashClass may be a poor idea.
 
-  Doubling the size of the area increased the number of open slots in the array
+  Doubling the size of the area increases the number of open slots in the array
   for potential values which may lead to more fragmentation.
-  Also, doubling the size of the array (allocating memory) is a slows operation.
-  
+  Resizing based on prime numbers reduces the number of collisions.
+  Also, doubling the size of the array (allocating memory) slows operation because every
+  entry has to be evaluated and re-indexed.
