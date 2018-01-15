@@ -72,33 +72,31 @@ class LinkedList
 
   # This method removes `node` from the list and must keep the rest of the list intact.
   def delete(node)
-    removed = nil
-    if node == @head
-      removed = @head
-      node = @head.next
-      @head = node
+
+    if @head == node
+      @head = @head.next
+      return
+
     elsif node == @tail
-      removed = @tail
-      current = @head
-      until current.next == @tail
-        current = current.next
-      end
-      @tail = current
+      @tail = find_before(node)
       @tail.next = nil
+
     else
-      current = @head
-      until current.next == node
-        current = current.next
-      end
-        link_1 = current
-      until current == node
-        current = current.next
-      end
-        link_2 = current.next
-        removed = current
-        link_1.next = link_2
+      value = find_before(node)
+        link = value
+        link.next = value.next.next
     end
-    removed
+  end
+
+  def find_before(value)
+    node = @head
+
+    return false if !node.next
+    return node if node.next == value
+
+    while (node = node.next)
+      return node if node.next && node.next == value
+    end
   end
 
   # This method adds `node` to the front of the list and must set the list's head to `node`.

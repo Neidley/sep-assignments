@@ -15,6 +15,17 @@ RSpec.describe OpenAddressing, type: Class do
     star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
   end
 
+=begin
+
+  describe "#print_out" do
+    it "prints out the location and value of each entry in a readily understood way" do
+      i = star_wars_movies.print_out
+      expect(i).to eq 4
+    end
+  end
+
+=end
+
   describe "#index" do
     it "creates a hash key based on the string value passed in" do
       i = star_wars_movies.index("Star Wars: A New Hope", 6)

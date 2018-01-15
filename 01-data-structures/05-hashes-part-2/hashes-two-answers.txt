@@ -1,0 +1,49 @@
+Written Assignment
+
+Describe three collision resolution strategies not mentioned here.
+
+  Hopscotch hashing - Similar to cuckoo hashing and linear probing.
+      "When inserting an entry, one first attempts to add it to a bucket in the neighborhood.
+      However, if all buckets in this neighborhood are occupied,
+      the algorithm traverses buckets in sequence until an open slot (an unoccupied bucket)
+      is found (as in linear probing).
+      At that point, since the empty bucket is outside the neighborhood,
+      items are repeatedly displaced in a sequence of hops.
+      (This is similar to cuckoo hashing, but with the difference that in this case
+      the empty slot is being moved into the neighborhood,
+      instead of items being moved out with the hope of eventually finding an empty slot.)
+      Each hop brings the open slot closer to the original neighborhood,
+      without invalidating the neighborhood property of any of the buckets along the way.
+      In the end, the open slot has been moved into the neighborhood,
+      and the entry being inserted can be added to it."
+      https://en.wikipedia.org/wiki/Hash_table#Collision_resolution
+
+  Coalesced hashing[edit]
+      "A hybrid of chaining and open addressing,
+      coalesced hashing links together chains of nodes within the table itself.
+      Like open addressing, it achieves space usage and (somewhat diminished) cache advantages
+      over chaining. Like chaining, it does not exhibit clustering effects;
+      in fact, the table can be efficiently filled to a high density. Unlike chaining,
+      it cannot have more elements than table slots."
+      https://en.wikipedia.org/wiki/Hash_table#Collision_resolution
+
+  2-Choice hashing -
+      "2-choice hashing employs two different hash functions, h1(x) and h2(x),
+      for the hash table. Both hash functions are used to compute two table locations.
+      When an object is inserted in the table,
+      then it is placed in the table location that contains fewer objects
+      (with the default being the h1(x) table location if there is equality in bucket size).
+      2-choice hashing employs the principle of the power of two choices."
+      https://en.wikipedia.org/wiki/Hash_table#Collision_resolution
+
+
+Create your own collision resolution strategy and describe how it works.
+
+  The Neidley method would implement Separate Chaining - in which
+  items input can chain from buckets using linked lists if the hashing function finds an item already
+  occupies the index returned. However, before chaining,
+  a free index instance (available_index) variable is referenced and if it exists, the item is placed in that
+  available bucket instead.
+  This should result in less chaining, thus resulting in lower reference times.
+  The question is, how much time would this add and how to update the available_index variable after
+  insertions and/or resizing occurs.
