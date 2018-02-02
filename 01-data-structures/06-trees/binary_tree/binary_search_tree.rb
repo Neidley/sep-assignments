@@ -75,9 +75,9 @@ class BinarySearchTree
         parent.right = nuke.right
       end
 
-    #if node has left AND right children, do this
+    #if node to be deleted has left AND right children, do this
     elsif nuke.left && nuke.right
-      #
+
 
     #catches any outliers and just returns nil (should never reach this)
     else
