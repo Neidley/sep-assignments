@@ -1,6 +1,6 @@
 require_relative 'node'
 
-class BinarySearchTree
+class MinBinaryHeap
 
   def initialize(root)
     @root = root
