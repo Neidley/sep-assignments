@@ -1,0 +1,74 @@
+QUESTIONS
+  1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+
+  
+
+  2. Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
+
+
+
+  3. How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
+
+
+
+  4. How much time does finding 50000 in the Binary Search Tree consume compared to the Heap?
+
+
+
+  5. How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
+
+
+
+  6. When would you use a Binary Search Tree and why?
+
+
+
+  7. When would you use an Heap and why?
+
+
+
+Binary Search Tree Observations
+  INSERT
+    - Uses depth first search to find the appropriate place to add the data and adds it as a new Leaf.
+    - Parameters: Root node, New Node
+    - First, sets temp to root
+    - While loop as long as temp exists
+    -- Second, if temp has a free left or right AND
+      it obeys lesser ratings to right and greater ratings to left,
+      assigns node to left or right accordingly.
+    -- Otherwise, if temp already has two children,
+      temp is assigned to temp.left if new node rating is lesser than temp
+      or assigns temp to temp right if new node rating is greater than temp.
+      Then repeat second step.
+
+  FIND
+    - Recursive Depth First Search
+    - Returns a Node object which contains the matching data, if found.
+    - Otherwise, returns nil.
+
+  DELETE
+    - Deletes a node while preserving tree as long as node is a leaf or only has one child.
+    - Uses a separate find_parent method that returns the parent node needed for reassigning and deletion.
+    - **Note** provided tests do not cover deletion of a node with two children.
+
+  PRINTF
+    - Breadth First printout by row, left to right
+    - Uses an array to create a queue system to print out each movie's title and rating.
+
+Min Binary Heap Observations
+  INSERT
+    - Works if movie has an input rating greater than any already in the heap.
+    - Uses a separate find_space method that uses breadth first search that returns
+      the first available parent node with a left or right that is nil.
+
+  FIND
+    - Returns a Node object which contains the matching title to input data, if found.
+    - uses Breadth First Search array to search by row, left to right.
+
+  DELETE
+    - Uses a separate find_parent method that returns the parent node needed for deletion.
+    - **Note** Tests I made only cover deletion of a node with no children.
+
+  PRINTF
+    - Breadth First printout by row, left to right
+    - Uses an array to create a queue system to print out each movie's title and rating.

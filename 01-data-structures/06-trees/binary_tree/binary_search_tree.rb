@@ -6,6 +6,7 @@ class BinarySearchTree
     @root = root
   end
 
+  # uses depth first search to find the appropriate place to add the data and adds it as a new Leaf.
   def insert(root, node)
     temp = root
     while temp
@@ -103,7 +104,7 @@ class BinarySearchTree
     end
   end
 
-  # Recursive Breadth First Search
+  # Breadth First Search
   def printf(children=nil)
     print_order = [@root]
 
