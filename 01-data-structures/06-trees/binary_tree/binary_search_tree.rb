@@ -78,12 +78,28 @@ class BinarySearchTree
 
     #if node to be deleted has left AND right children, do this
     elsif node.left && node.right
-      #no clue
+      replacement_node = find_min(node.right)
+      replacement_node.right = node.right || nil
+      replacement_node.left = node.left || nil
+
+      if parent.left == node
+        parent.left = replacement_node
+      elsif parent.right == node
+        parent.right = replacement_node
+      end
       p "you are trying to delete a node with two children"
 
     #catches any outliers and just returns nil (should never reach this)
     else
       return nil
+    end
+  end
+
+  def find_min(node)
+    if !node.left
+      return node
+    else
+      find_min(node.left)
     end
   end
 

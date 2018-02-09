@@ -1,33 +1,5 @@
-QUESTIONS
-  1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
-
-  
-
-  2. Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
-
-
-
-  3. How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
-
-
-
-  4. How much time does finding 50000 in the Binary Search Tree consume compared to the Heap?
-
-
-
-  5. How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
-
-
-
-  6. When would you use a Binary Search Tree and why?
-
-
-
-  7. When would you use an Heap and why?
-
-
-
 Binary Search Tree Observations
+
   INSERT
     - Uses depth first search to find the appropriate place to add the data and adds it as a new Leaf.
     - Parameters: Root node, New Node
@@ -49,13 +21,13 @@ Binary Search Tree Observations
   DELETE
     - Deletes a node while preserving tree as long as node is a leaf or only has one child.
     - Uses a separate find_parent method that returns the parent node needed for reassigning and deletion.
-    - **Note** provided tests do not cover deletion of a node with two children.
 
   PRINTF
     - Breadth First printout by row, left to right
     - Uses an array to create a queue system to print out each movie's title and rating.
 
 Min Binary Heap Observations
+
   INSERT
     - Works if movie has an input rating greater than any already in the heap.
     - Uses a separate find_space method that uses breadth first search that returns
@@ -66,9 +38,57 @@ Min Binary Heap Observations
     - uses Breadth First Search array to search by row, left to right.
 
   DELETE
-    - Uses a separate find_parent method that returns the parent node needed for deletion.
-    - **Note** Tests I made only cover deletion of a node with no children.
+    - Uses a separate find_parent method
+    - the find_parent method grabs parent of node needed for deletion of node.
 
   PRINTF
     - Breadth First printout by row, left to right
     - Uses an array to create a queue system to print out each movie's title and rating.
+
+
+
+QUESTIONS
+
+  1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+    The Heap uses all available spaces before creating additional rows.
+    The BST usually creates longer branches, more nodes have only one child.
+
+
+  2. Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
+    If my calculations are correct, BST insertion takes roughly 1/10th the amount of time
+    compared to Heap insertion.
+
+
+  3. How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
+    BST average insertion takes 0.000003771787718 seconds actual time
+    (0.377175 / 99,999)
+    Heap average insertion takes 0.000038695756958 seconds actual time
+    (3.869537 / 99,999)
+    Heap's average insertion is approximately 10.26 times slower than a BST average insertion.
+
+
+
+  4. How much time does finding 50000 in the Binary Search Tree consume compared to the Heap?
+    BST finding "50000" takes 0.000023 seconds actual time
+    Heap finding "50000" takes 0.016967 seconds actual time
+    Heap was approximately 737.69 times slower finding node "50000" than BST to find the same node.
+
+
+
+  5. How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
+    BST deletion of "root.right.title" takes 0.000113 seconds actual time
+    Heap deletion of "100000" takes 0.006262 seconds actual time
+    Heap's deletion was approximately 55.42 times slower than BST deletion.
+
+
+  6. When would you use a Binary Search Tree and why?
+    A Binary Search Tree is best used when you only need traversal and insertion according
+    to rules set to left and right branches. In our checkpoint, lesser (ratings) nodes always branch off right
+    and greater (ratings) nodes always branch off right.
+
+
+
+  7. When would you use an Heap and why?
+    A Heap is best used when you need nodes organized not just by left or right branches,
+    but by row. For example, in our Min Binary Heap, the root will have the lowest rating of all
+    and nodes will have progressively greater ratings going down by row from the root.

@@ -173,6 +173,26 @@ RSpec.describe MinBinaryHeap, type: Class do
       heap.delete(root, district.title)
       expect(heap.find(root, district.title)).to be_nil
     end
+
+    it "properly deletes a node with one child" do
+      heap.insert(root, braveheart)
+      heap.insert(root, jedi)
+      heap.insert(root, donnie)
+      heap.delete(root, braveheart.title)
+      expect(heap.find(root, braveheart.title)).to be_nil
+      expect(heap.find(root, donnie.title).title).to eq "Donnie Darko"
+    end
+
+    it "properly deletes a node with two children" do
+      heap.insert(root, braveheart)
+      heap.insert(root, jedi)
+      heap.insert(root, donnie)
+      heap.insert(root, inception)
+      heap.delete(root, braveheart.title)
+      expect(heap.find(root, braveheart.title)).to be_nil
+      expect(heap.find(root, donnie.title).title).to eq "Donnie Darko"
+      expect(heap.find(root, inception.title).title).to eq "Inception"
+    end
   end
 
   describe "#printf" do

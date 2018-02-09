@@ -94,34 +94,59 @@ class MinBinaryHeap
       elsif parent.right == node
         parent.right = nil
       end
-=begin
+
     #if node to be deleted has only left child, do this
     elsif node.left && !node.right
       if parent.left == node
         parent.left = node.left
+        node = nil
       elsif parent.right == node
         parent.right = node.left
+        node = nil
       end
 
     #if node to be deleted has only right child, do this
     elsif !node.left && node.right
       if parent.left == node
         parent.left = node.right
+        node = nil
       elsif parent.right == node
         parent.right = node.right
+        node = nil
       end
 
     #if node to be deleted has left AND right children, do this
     elsif node.left && node.right
-      #no clue
-      p "you are trying to delete a node with two children"
+
+      #find minimum in subtree
+      replacement_node = node.left
+      replacement_node.right = node.right || nil
+      replacement_node.left = node.left.left || nil
+
+      if parent.left == node
+        parent.left = replacement_node
+        node = nil
+      elsif parent.right == node
+        parent.right = replacement_node
+        node = nil
+      end
 
     #catches any outliers and just returns nil (should never reach this)
     else
       return nil
-=end
     end
   end
+
+=begin
+  # write a function to find minimum
+  def find_min(node)
+    if !node.left
+      return node
+    else
+      find_min(node.left)
+    end
+  end
+=end
 
   def find_parent(root, node)
 
