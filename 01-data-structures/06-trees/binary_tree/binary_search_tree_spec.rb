@@ -140,6 +140,16 @@ RSpec.describe BinarySearchTree, type: Class do
       tree.delete(root, mad_max_2.title)
       expect(tree.find(root, mad_max_2.title)).to be_nil
     end
+
+    it "properly deletes a node with two children" do
+      tree.insert(root, empire)
+      tree.insert(root, hope)
+      tree.insert(root, mad_max_2)
+      tree.delete(root, empire.title)
+      expect(tree.find(root, empire.title)).to be_nil
+      expect(tree.find(root, mad_max_2.title).title).to eq "Mad Max 2: The Road Warrior"
+      expect(tree.find(root, hope.title).title).to eq "Star Wars: A New Hope"
+    end
   end
 
   describe "#printf" do

@@ -1,50 +1,85 @@
 require_relative 'node'
 
-class BinarySearchTree
+class MinBinaryHeap
 
   def initialize(root)
     @root = root
   end
 
-  # uses depth first search to find the appropriate place to add the data and adds it as a new Leaf.
   def insert(root, node)
     temp = root
     while temp
-      if node.rating < temp.rating && temp.left == nil
+=begin
+      if node.rating < temp.rating
+        parent = find_parent(root, temp)
+        if parent.left == temp
+          parent.left = node
+          node.left = temp
+          return node
+        elsif parent.right == temp
+          parent.right = node
+          node.left = temp
+          return node
+        else
+          return nil
+        end
+=end
+      if node.rating > temp.rating && !temp.left
         temp.left = node
         return node
-      elsif node.rating > temp.rating && temp.right == nil
+      elsif node.rating > temp.rating && !temp.right
         temp.right = node
         return node
-      elsif node.rating < temp.rating
-        temp = temp.left
       else
-        temp = temp.right
+        seeking_children = find_space(root)
+        if !seeking_children.left
+          seeking_children.left = node
+          return node
+        elsif !seeking_children.right
+          seeking_children.right = node
+          return node
+        end
+      end
+    end
+    return nil
+  end
+
+  def find_space(root)
+    array = [root]
+    while !array.empty?
+      node = array.shift
+      if node.left && node.right
+        array.push(node.left)
+        array.push(node.right)
+      else
+        return node
       end
     end
   end
 
-  # Recursive Depth First Search
+  # Breadth First Search
   def find(root, data)
     return nil if data.nil?
-    if root.title == data
-      return root
-    elsif !root.left && root.right
-      self.find(root.right, data)
-    elsif !root.right && root.left
-      self.find(root.left, data)
-    elsif root.right && root.left
-      self.find(root.left, data)
-    else
-      return nil
+    array = [root]
+    while !array.empty?
+      node = array.shift
+      if node == nil
+        next
+      elsif node.title == data
+        return node
+      else
+        array.push(node.left)
+        array.push(node.right)
+      end
     end
+    return nil
   end
 
   # finds a parent and node to be deleted then handles deletion according to number of children
   def delete(root, data)
 
     # returns nil if root or data input into delete method are nil
-    return nil if data.nil? || root.nil?
+    return nil if root.nil? || data.nil?
 
     #given root and data, finds node to be deleted
     node = find(root, data)
@@ -64,30 +99,37 @@ class BinarySearchTree
     elsif node.left && !node.right
       if parent.left == node
         parent.left = node.left
+        node = nil
       elsif parent.right == node
         parent.right = node.left
+        node = nil
       end
 
     #if node to be deleted has only right child, do this
     elsif !node.left && node.right
       if parent.left == node
         parent.left = node.right
+        node = nil
       elsif parent.right == node
         parent.right = node.right
+        node = nil
       end
 
     #if node to be deleted has left AND right children, do this
     elsif node.left && node.right
-      replacement_node = find_min(node.right)
+
+      #find minimum in subtree
+      replacement_node = node.left
       replacement_node.right = node.right || nil
-      replacement_node.left = node.left || nil
+      replacement_node.left = node.left.left || nil
 
       if parent.left == node
         parent.left = replacement_node
+        node = nil
       elsif parent.right == node
         parent.right = replacement_node
+        node = nil
       end
-      p "you are trying to delete a node with two children"
 
     #catches any outliers and just returns nil (should never reach this)
     else
@@ -95,6 +137,8 @@ class BinarySearchTree
     end
   end
 
+=begin
+  # write a function to find minimum
   def find_min(node)
     if !node.left
       return node
@@ -102,22 +146,24 @@ class BinarySearchTree
       find_min(node.left)
     end
   end
+=end
 
-  # Recursive Depth First Search
   def find_parent(root, node)
-    return nil if node.nil? || root.nil? || (root.right.nil? && root.left.nil?)
 
-    if root.right == node || root.left == node
-      return root
-    elsif !root.left && root.right
-      self.find_parent(root.right, node)
-    elsif !root.right && root.left
-      self.find_parent(root.left, node)
-    elsif root.right && root.left
-      self.find_parent(root.left, node)
-    else
-      return nil
+    return nil if node.nil?
+    array = [root]
+    while !array.empty?
+      current = array.shift
+      if current == nil
+        next
+      elsif current.left == node || current.right == node
+        return current
+      else
+        array.push(current.left)
+        array.push(current.right)
+      end
     end
+    return nil
   end
 
   # Breadth First Search
